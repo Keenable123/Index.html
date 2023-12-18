@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Time</title>
+    <style>
+        body {
+            font-family: , sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Time</h1>
+
+    <form id="quizForm">
+        <!-- Question 1 -->
+        <fieldset>
+            <legend>1. What is the largest planet in our solar system?</legend>
+            <label for="q1a"><input type="radio" id="q1a" name="q1" value="a" required> a) Jupiter</label>
+            <label for="q1b"><input type="radio" id="q1b" name="q1" value="b"> b) Saturn</label>
+            <label for="q1c"><input type="radio" id="q1c" name="q1" value="c"> c) Neptune</label>
+            <label for="q1d"><input type="radio" id="q1d" name="q1" value="d"> d) Mars</label>
+        </fieldset>
+
+        <!-- Question 2 -->
+        <fieldset>
+            <legend>2. Which galaxy is home to our solar system?</legend>
+            <label for="q2a"><input type="radio" id="q2a" name="q2" value="a" required> a) Milky Way</label>
+            <label for="q2b"><input type="radio" id="q2b" name="q2" value="b"> b) Andromeda</label>
+            <label for="q2c"><input type="radio" id="q2c" name="q2" value="c"> c) Triangulum</label>
+            <label for="q2d"><input type="radio" id="q2d" name="q2" value="d"> d) Magellanic Clouds</label>
+
+        </fieldset>
+
+        <!-- Question 3 -->
+        <fieldset>
+            <legend>3. What is the name of the force that holds planets in orbit around the sun?</legend>
+            <label for="q3a"><input type="radio" id="q3a" name="q3" value="a" required> a) Gravity</label>
+            <label for="q3b"><input type="radio" id="q3b" name="q3" value="b"> b) Magnetism</label>
+            <label for="q3c"><input type="radio" id="q3c" name="q3" value="c"> c) Wind</label>
+            <label for="q3d"><input type="radio" id="q3d" name="q3" value="d"> d) All of the above</Center></label>
+
+        </fieldset>
+
+        <!-- Question 4 -->
+        <fieldset>
+            <legend>4. How many moons does Earth have?</legend>
+            <label for="q4a"><input type="radio" id="q4a" name="q4" value="a" required> a) One</label>
+            <label for="q4b"><input type="radio" id="q4b" name="q4" value="b"> b) Two</label>
+            <label for="q4c"><input type="radio" id="q4c" name="q4" value="c"> c) Three</label>
+            <label for="q4d"><input type="radio" id="q4d" name="q4" value="d"> d) Four</label>
+        </fieldset>
+
+        <!-- Question 5 -->
+        <fieldset>
+            <legend>5. What is the name of the closest galaxy to the Milky Way?</legend>
+            <label for="q5a"><input type="radio" id="q5a" name="q5" value="a" required> a) Triangulum</label>
+            <label for="q5b"><input type="radio" id="q5b" name="q5" value="b"> b) Andromeda</label>
+            <label for="q5c"><input type="radio" id="q5c" name="q5" value="c"> c) Magellanic Clouds</label>
+            <label for="q5d"><input type="radio" id="q5d" name="q5" value="d"> d) None of these</label>
+
+            
+        </fieldset>
+
+        <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+
+        <!-- Results Section -->
+        <div id="results"></div>
+    </form>
+
+    <script>
+        function submitQuiz() {
+            // Array to store correct answers
+            const correctAnswers = ["a", "a", "a", "a", "b"];
+
+            // Get user's answers
+            const userAnswers = [
+                document.querySelector('input[name="q1"]:checked').value,
+                document.querySelector('input[name="q2"]:checked').value,
+                document.querySelector('input[name="q3"]:checked').value,
+                document.querySelector('input[name="q4"]:checked').value,
+                document.querySelector('input[name="q5"]:checked').value
+            ];
+
+            // Calculate score
+            let score = 0;
+            let resultsHTML = "<h2>Results</h2>";
+
+            for (let i = 0; i < correctAnswers.length; i++) {
+                const questionNumber = i + 1;
+                resultsHTML += `<p>Question ${questionNumber}: `;
+                
+                if (userAnswers[i] === correctAnswers[i]) {
+                    score++;
+                    resultsHTML += "<span style='color: green;'>Correct!</span></p>";
+                } else {
+                    resultsHTML += `<span style='color: red;'>Wrong! Correct answer: ${correctAnswers[i]}</span></p>`;
+                }
+            }
+
+            // Display score and results
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = resultsHTML + `<p>Your Score: ${score} out of ${correctAnswers.length}</p>`;
+        }
+    </script>
+</body>
+</html>
